@@ -1,0 +1,25 @@
+{
+  "name": "teste-tecnico-pilops",
+  "version": "1.0.0",
+  "description": "Projeto para teste tecnico para a Pilops",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ludson96/teste-tecnico-pilops.git"
+  },
+  "author": "Ludson Pereira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ludson96/teste-tecnico-pilops/issues"
+  },
+  "homepage": "https://github.com/ludson96/teste-tecnico-pilops#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3"
+  }
+}
