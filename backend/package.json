@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Projeto para teste tecnico para a Pilops",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "ts-node src/server.ts"
+    "start": "node dist/server.js",
+    "dev": "nodemon --exec tsx src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -22,8 +25,10 @@
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/node": "^24.5.2",
+    "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   }
 }

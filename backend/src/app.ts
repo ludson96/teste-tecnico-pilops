@@ -1,5 +1,5 @@
 import express from 'express';
-import flightsRoutes from './routes/flightsRoutes';
+import flightsRoutes from './routes/flightsRoutes.js';
 
 const app = express();
 
