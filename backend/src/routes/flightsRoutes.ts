@@ -1,9 +1,8 @@
-// src/routes/flightsRoutes.ts
 import { Router } from 'express';
 import { listFlights } from '../controllers/flightsController';
 
 const router = Router();
 
-router.get('/flights', listFlights);
+router.get('/', listFlights);
 
 export default router;
