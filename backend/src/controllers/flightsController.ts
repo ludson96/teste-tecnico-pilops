@@ -1,9 +1,27 @@
 import { Request, Response } from 'express';
 import * as flightService from '../services/flightsService.js';
 
-export const listFlights = (_req: Request, res: Response) => {
-  const flights = flightService.getAllFlights();
-  res.json(flights);
+export const listFlights = (req: Request, res: Response) => {
+  // Código adapatado de https://blog.devgenius.io/pagination-in-node-js-512fbb809103
+  // 1. Leitura dos query parameters da URL (ex: /flights?page=2&limit=20)
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+
+  // 2. Chama o serviço, agora passando os parâmetros de paginação
+  const result = flightService.getAllFlights(page, limit);
+  
+  // 3. Monta a resposta final com metadados de paginação
+  const totalPages = Math.ceil(result.totalItems / limit);
+
+  const response = {
+    currentPage: page,
+    totalPages: totalPages,
+    itemsPerPage: limit,
+    totalItems: result.totalItems,
+    data: result.flights
+  };
+
+  res.status(200).json(response);
 };
 
 export const getFlightDetails = (req: Request, res: Response) => {
