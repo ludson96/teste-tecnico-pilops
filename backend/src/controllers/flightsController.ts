@@ -3,7 +3,7 @@ import * as flightService from '../services/flightsService.js';
 
 export const listFlights = (req: Request, res: Response) => {
   // Código adapatado de https://blog.devgenius.io/pagination-in-node-js-512fbb809103
-  // 1. Leitura dos query parameters da URL (ex: /flights?page=2&limit=20)
+  // 1. Leitura dos query parameters da URL
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
 
