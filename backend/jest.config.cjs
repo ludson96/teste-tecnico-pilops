@@ -17,4 +17,12 @@ module.exports = {
   testMatch: [
     '**/__tests__/**/*.test.ts'
   ],
+  // Mapear imports que terminam em .js para permitir escrever imports ESM nos arquivos TS
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1'
+  },
+  transform: {
+    '^.+\\.ts$': ['ts-jest', { useESM: true }]
+  },
+  extensionsToTreatAsEsm: ['.ts'],
 };

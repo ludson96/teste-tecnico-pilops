@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon --exec tsx src/server.ts",
-    "test": "jest -i --verbose",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js -i --verbose",
     "test:mocha": "mocha -r ts-node/register tests/**/**/*.test.ts --exit -t 60000",
     "test:coverage": "nyc mocha -r ts-node/register tests/**/**/*.test.ts --exit -t 60000",
     "lint": "eslint src/**/*.{ts,js} --ext .ts,.js",
