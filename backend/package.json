@@ -7,8 +7,9 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon --exec tsx src/server.ts",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch",
+    "test": "jest -i --verbose",
+    "test:mocha": "mocha -r ts-node/register tests/**/**/*.test.ts --exit -t 60000",
+    "test:coverage": "nyc mocha -r ts-node/register tests/**/**/*.test.ts --exit -t 60000",
     "lint": "eslint src/**/*.{ts,js} --ext .ts,.js",
     "lint:fix": "eslint src/**/*.{ts,js} --ext .ts,.js --fix"
   },
@@ -27,18 +28,18 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
-    "@types/jest": "^29.5.3",
+    "@types/jest": "^29.5.14",
     "@types/node": "^24.5.2",
-    "jest": "^29.6.0",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^9.0.0",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.10",
-    "ts-jest": "^29.1.0",
+    "ts-jest": "^29.4.4",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "tsx": "^4.20.5",
-    "typescript": "5.3.3",
-    "eslint": "^8.46.0",
-    "@typescript-eslint/parser": "^6.1.0",
-    "@typescript-eslint/eslint-plugin": "^6.1.0",
-    "eslint-config-prettier": "^9.0.0"
+    "typescript": "5.3.3"
   }
 }

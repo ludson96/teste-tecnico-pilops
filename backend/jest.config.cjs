@@ -1,19 +1,20 @@
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  preset: 'ts-jest/presets/default-esm',
+  // O preset 'default-esm' já configura o transform, moduleNameMapper, extensionsToTreatAsEsm e globals para ESM.
+  // As configurações manuais que estavam aqui foram removidas por serem redundantes.
+  preset: "ts-jest/presets/default-esm",
   testEnvironment: 'node',
-  moduleFileExtensions: ['ts', 'js', 'json'],
   roots: ['<rootDir>/src'],
-  collectCoverageFrom: ['src/**/*.{ts,js}', '!src/server.ts', '!src/app.ts'],
-  globals: {
-    'ts-jest': {
-      useESM: true
-    }
-  },
-  transform: {
-    '^.+\\.ts$': ['ts-jest']
-  },
-  extensionsToTreatAsEsm: ['.ts'],
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1'
-  },
+  collectCoverageFrom: [
+    'src/**/*.{ts,js}',
+    // Arquivos que não devem ser incluídos na cobertura
+    '!src/server.ts',
+    '!src/app.ts',
+    '!src/types/**/*.ts',
+    '!src/data/**/*.ts',
+  ],
+  // `testMatch` é a configuração padrão do Jest, então não é estritamente necessário, mas é bom deixar explícito.
+  testMatch: [
+    '**/__tests__/**/*.test.ts'
+  ],
 };
