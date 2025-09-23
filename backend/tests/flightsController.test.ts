@@ -1,14 +1,14 @@
 import { jest } from "@jest/globals";
 import { Request, Response } from "express";
 
-jest.unstable_mockModule("../services/flightsService.js", () => ({
+jest.unstable_mockModule("../src/services/flightsService", () => ({
   getAllFlights: jest.fn(),
   getFlightById: jest.fn(),
   getTotalBalance: jest.fn(),
 }));
 
-const flightService = await import("../services/flightsService.js");
-const { listFlights, getFlightDetails, totalBalance } = await import("../controllers/flightsController.js");
+const flightService = await import("../src/services/flightsService.js");
+const { listFlights, getFlightDetails, totalBalance } = await import("../src/controllers/flightsController");
 
 describe('flightsController', () => {
   beforeEach(() => {

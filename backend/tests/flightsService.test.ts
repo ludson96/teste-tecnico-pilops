@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 
-jest.unstable_mockModule('../data/flightHistory.json', () => ({
+jest.unstable_mockModule('../src/data/flightHistory.json', () => ({
   default: {
     flights: [
       { id: 'MOCK-1', flightData: { balance: 150.50 } },
@@ -12,7 +12,7 @@ jest.unstable_mockModule('../data/flightHistory.json', () => ({
   },
 }));
 
-const { getAllFlights, getFlightById, getTotalBalance } = await import('../services/flightsService.js');
+const { getAllFlights, getFlightById, getTotalBalance } = await import('../src/services/flightsService.js');
 
 describe('flightsService', () => {
 
@@ -47,7 +47,6 @@ describe('flightsService', () => {
   describe('getAllFlights paginação', () => {
     test('deve retornar o número correto de itens por página', () => {
       const page1 = getAllFlights(1, 5);
-      console.log("Total de items:", page1.flights.length);
 
       expect(page1.flights.length).toBe(5);
       expect(page1.totalItems).toBeGreaterThanOrEqual(5);

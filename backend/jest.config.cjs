@@ -4,7 +4,8 @@ module.exports = {
   // As configurações manuais que estavam aqui foram removidas por serem redundantes.
   preset: "ts-jest/presets/default-esm",
   testEnvironment: 'node',
-  roots: ['<rootDir>/src'],
+  // A propriedade 'roots' foi removida. Por padrão, o Jest já procura em todo o projeto ('<rootDir>').
+  // Isso corrige o problema de não encontrar os testes na pasta 'tests' no diretório raiz.
   collectCoverageFrom: [
     'src/**/*.{ts,js}',
     // Arquivos que não devem ser incluídos na cobertura
@@ -13,16 +14,8 @@ module.exports = {
     '!src/types/**/*.ts',
     '!src/data/**/*.ts',
   ],
-  // `testMatch` é a configuração padrão do Jest, então não é estritamente necessário, mas é bom deixar explícito.
   testMatch: [
-    '**/__tests__/**/*.test.ts'
-  ],
-  // Mapear imports que terminam em .js para permitir escrever imports ESM nos arquivos TS
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1'
-  },
-  transform: {
-    '^.+\\.ts$': ['ts-jest', { useESM: true }]
-  },
-  extensionsToTreatAsEsm: ['.ts'],
+    // Aponta diretamente para a pasta de testes na raiz do projeto.
+    '<rootDir>/tests/**/*.test.ts'
+  ]
 };
