@@ -55,4 +55,20 @@ describe('flightsController', () => {
       expect(res.json).toHaveBeenCalledWith({ id: 'MOCK-1', flightData: { balance: 150.50 } });
     });
   });
+
+    describe('totalBalance controller', () => {
+    test('deve retornar a soma dos saldos de todos os voos', () => {
+      const req = {} as unknown as Request;
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as unknown as Response;
+
+      (flightService.getTotalBalance as jest.Mock).mockReturnValue(2325.25);
+
+      totalBalance(req, res);
+
+      expect(flightService.getTotalBalance).toHaveBeenCalled();
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({ total: 2325.25 }); 
+
+    });
+  });
 });
