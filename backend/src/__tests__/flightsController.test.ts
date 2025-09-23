@@ -1,15 +1,12 @@
-// flightsController.test.ts
 import { jest } from "@jest/globals";
 import { Request, Response } from "express";
 
-// primeiro mocka o módulo
 jest.unstable_mockModule("../services/flightsService.js", () => ({
   getAllFlights: jest.fn(),
   getFlightById: jest.fn(),
   getTotalBalance: jest.fn(),
 }));
 
-// agora importa o controller e o mock
 const flightService = await import("../services/flightsService.js");
 const { listFlights, getFlightDetails, totalBalance } = await import("../controllers/flightsController.js");
 
@@ -54,9 +51,22 @@ describe('flightsController', () => {
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith({ id: 'MOCK-1', flightData: { balance: 150.50 } });
     });
+
+    test('deve retornar undefined para um voo inexistente', () => {
+      const req = { params: { id: 'MOCK-99999999' } } as unknown as Request;
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as unknown as Response;
+
+      (flightService.getFlightById as jest.Mock).mockReturnValue(undefined);
+
+      getFlightDetails(req, res)
+
+      expect(flightService.getFlightById).toHaveBeenCalledWith('MOCK-99999999');
+      expect(res.status).toHaveBeenCalledWith(404);
+      expect(res.json).toHaveBeenCalledWith({ message: 'Flight not found' });
+    });
   });
 
-    describe('totalBalance controller', () => {
+  describe('totalBalance controller', () => {
     test('deve retornar a soma dos saldos de todos os voos', () => {
       const req = {} as unknown as Request;
       const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as unknown as Response;
@@ -67,7 +77,7 @@ describe('flightsController', () => {
 
       expect(flightService.getTotalBalance).toHaveBeenCalled();
       expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith({ total: 2325.25 }); 
+      expect(res.json).toHaveBeenCalledWith({ total: 2325.25 });
 
     });
   });

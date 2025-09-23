@@ -26,7 +26,7 @@ describe('flightsService', () => {
     });
 
     test('deve retornar undefined para um voo inexistente', () => {
-      const missing = getFlightById('FL-99999999');
+      const missing = getFlightById('MOCK-99999999');
       expect(missing).toBeUndefined();
     });
   });
