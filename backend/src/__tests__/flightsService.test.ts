@@ -1,14 +1,18 @@
-import { getAllFlights, getFlightById, getTotalBalance } from '../services/flightsService.js';
+import { jest } from '@jest/globals';
 
-jest.mock('../data/flightHistory.json', () => ({
-  flights: [
-    { id: 'MOCK-1', flightData: { balance: 150.50 } },
-    { id: 'MOCK-2', flightData: { balance: -25.25 } },
-    { id: 'MOCK-3', flightData: { balance: 100.00 } },
-    { id: 'MOCK-4', flightData: { balance: 500.00 } },
-    { id: 'MOCK-5', flightData: { balance: 1600.00 } },
-  ],
-}), { virtual: true });
+jest.unstable_mockModule('../data/flightHistory.json', () => ({
+  default: {
+    flights: [
+      { id: 'MOCK-1', flightData: { balance: 150.50 } },
+      { id: 'MOCK-2', flightData: { balance: -25.25 } },
+      { id: 'MOCK-3', flightData: { balance: 100.00 } },
+      { id: 'MOCK-4', flightData: { balance: 500.00 } },
+      { id: 'MOCK-5', flightData: { balance: 1600.00 } },
+    ],
+  },
+}));
+
+const { getAllFlights, getFlightById, getTotalBalance } = await import('../services/flightsService.js');
 
 describe('flightsService', () => {
 
@@ -18,8 +22,7 @@ describe('flightsService', () => {
 
       expect(flight).toBeDefined();
 
-      // O '!' afirma ao TypeScript que 'flight' não é undefined aqui
-      expect(flight!.id).toBe('MOCK-1');
+      expect(flight).toStrictEqual({ id: 'MOCK-1', flightData: { balance: 150.50 } });
     });
 
     test('deve retornar undefined para um voo inexistente', () => {
@@ -44,6 +47,7 @@ describe('flightsService', () => {
   describe('getAllFlights paginação', () => {
     test('deve retornar o número correto de itens por página', () => {
       const page1 = getAllFlights(1, 5);
+      console.log("Total de items:", page1.flights.length);
 
       expect(page1.flights.length).toBe(5);
       expect(page1.totalItems).toBeGreaterThanOrEqual(5);
