@@ -36,6 +36,22 @@ describe('flightsController', () => {
         data: [{ id: "MOCK-1" }, { id: "MOCK-2" }],
       });
     });
+
+    test('deve usar os valores padrão para página e limite quando não fornecidos', () => {
+      const req = { query: {} } as unknown as Request; // Sem page ou limit
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as unknown as Response;
+
+      (flightService.getAllFlights as jest.Mock).mockReturnValue({ totalItems: 25, flights: [] });
+
+      listFlights(req, res);
+
+      expect(flightService.getAllFlights).toHaveBeenCalledWith(1, 10);
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
+        currentPage: 1,
+        itemsPerPage: 10,
+      }));
+    });
   });
 
   describe('getFlightDetails controller', () => {
