@@ -1,23 +1,31 @@
 // flightsController.test.ts
 import { jest } from "@jest/globals";
+import { Request, Response } from "express";
 
+// primeiro mocka o módulo
 jest.unstable_mockModule("../services/flightsService.js", () => ({
   getAllFlights: jest.fn(),
   getFlightById: jest.fn(),
   getTotalBalance: jest.fn(),
 }));
 
+// agora importa o controller e o mock
 const flightService = await import("../services/flightsService.js");
-const { listFlights } = await import("../controllers/flightsController.js");
+const { listFlights, getFlightDetails, totalBalance } = await import("../controllers/flightsController.js");
 
 describe('flightsController', () => {
+  beforeEach(() => {
+    (flightService.getAllFlights as jest.Mock).mockClear();
+    (flightService.getFlightById as jest.Mock).mockClear();
+    (flightService.getTotalBalance as jest.Mock).mockClear();
+  });
 
   describe("listFlights controller", () => {
     test("deve retornar a lista de voos paginada", () => {
-      const req: any = { query: { page: "2", limit: "5" } };
-      const res: any = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+      const req = { query: { page: "2", limit: "5" } } as unknown as Request;
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as unknown as Response;
 
-      (flightService.getAllFlights as jest.Mock).mockReturnValue({totalItems: 12, flights: [{ id: "MOCK-1" }, { id: "MOCK-2" }]});
+      (flightService.getAllFlights as jest.Mock).mockReturnValue({ totalItems: 12, flights: [{ id: "MOCK-1" }, { id: "MOCK-2" }] });
 
       listFlights(req, res);
 
@@ -33,4 +41,18 @@ describe('flightsController', () => {
     });
   });
 
+  describe('getFlightDetails controller', () => {
+    test('deve retornar os detalhes corretos de um voo específico', () => {
+      const req = { params: { id: 'MOCK-1' } } as unknown as Request;
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as unknown as Response;
+
+      (flightService.getFlightById as jest.Mock).mockReturnValue({ id: 'MOCK-1', flightData: { balance: 150.50 } });
+
+      getFlightDetails(req, res)
+
+      expect(flightService.getFlightById).toHaveBeenCalledWith('MOCK-1');
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({ id: 'MOCK-1', flightData: { balance: 150.50 } });
+    });
+  });
 });
