@@ -1,5 +1,7 @@
 import { jest } from '@jest/globals';
 
+// https://www.devmedia.com.br/teste-unitario-com-jest/41234
+
 jest.unstable_mockModule('../src/data/flightHistory.json', () => ({
   default: {
     flights: [
