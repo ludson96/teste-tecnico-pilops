@@ -11,7 +11,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
         mono: ["var(--font-geist-mono)"],
-        manrope: ["var(--font-manrope)"],
+        sora: ["var(--font-sora)"],
       },
     },
   },
