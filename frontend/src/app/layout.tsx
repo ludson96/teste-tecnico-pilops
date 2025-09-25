@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Sora } from "next/font/google";
+import { Geist, Geist_Mono, Sora, Manrope } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,6 +18,12 @@ const sora = Sora({
   variable: "--font-sora",
 });
 
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-manrope",
+});
+
 export const metadata: Metadata = {
   title: "Pilops - Flight History",
   description: "Your virtual pilot career for Flight Simulator",
@@ -31,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} ${manrope.variable} antialiased`}
       >
         {children}
       </body>
