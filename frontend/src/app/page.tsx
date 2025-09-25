@@ -1,6 +1,6 @@
 import Card from "@/components/Card";
 import Header from "@/components/Header";
-import { getFlights } from "../../fetch";
+import { getFlights } from "../utils/fetch";
 
 const { data: flights } = await getFlights();
 
@@ -20,7 +20,7 @@ export default function Home() {
       </div>
 
       <div className="flex justify-center">
-        <Card flightsData={flights} className="mt-12 w-[1147px] h-[554px]" />
+        <Card flightsData={flights} className="mt-12" />
       </div>
 
     </main>
