@@ -12,9 +12,9 @@ export default function Home() {
 
       <div className="w-full max-w-[1147px] mt-24">
 
-        <div className="w-full md:w-[468px] h-auto md:h-[58px] font-sora mb-12">
-          <h2 className="font-bold text-[24px] leading-[110%] text-[#FFFFFF] mb-3">Histórico de Voos</h2>
-          <p className="font-normal text-[18px] leading-[110%] text-[#E0E0E0]">Visualize seu histórico completo de voos realizados</p>
+        <div className="w-full md:w-[468px] h-auto md:h-[58px] mb-12 font-sora">
+          <h2 className="font-bold text-[24px] leading-[110%] text-[#FFFFFF] mb-3 font-sora">Histórico de Voos</h2>
+          <p className="font-normal text-[18px] leading-[110%] text-[#E0E0E0] font-sora">Visualize seu histórico completo de voos realizados</p>
         </div>
 
         <Card flightsData={flights} />

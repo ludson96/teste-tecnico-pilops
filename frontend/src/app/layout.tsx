@@ -20,7 +20,7 @@ const sora = Sora({
 
 const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["200","300", "400", "500", "600", "700", "800"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
   variable: "--font-manrope",
 });
 
@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} ${manrope.variable} antialiased`}
+        className={`${sora.variable} ${manrope.variable} antialiased`}
       >
         {children}
       </body>
