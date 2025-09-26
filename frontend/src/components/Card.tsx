@@ -1,13 +1,14 @@
 import { IFlight } from "@/interfaces/IFlight";
 import { formatDate } from "@/utils/formatDate";
 import { formatBalance } from "@/utils/formatBalance";
+import Link from "next/link";
 
 export default function Card({ flightsData, className }: { flightsData: IFlight[]; className?: string }) {
   return (
     <section className={className}>
       <div className="space-y-[21px]">
         {flightsData.map((flight) => (
-          <div key={flight.id} className="bg-[#212121] rounded-[5px] border-[1px] border-[#444444] pt-[16px] pr-[24px] pb-[24px] pl-[24px] grid grid-cols-2 md:grid-cols-5 items-center gap-[24px] font-manrope text-[#FFFFFF] w-[1147px] h-[94px]">
+          <Link href={`/flights/${flight.id}`} key={flight.id} className="block bg-[#212121] rounded-[5px] border-[1px] border-[#444444] pt-[16px] pr-[24px] pb-[24px] pl-[24px] grid grid-cols-2 md:grid-cols-5 items-center gap-[24px] font-manrope text-[#FFFFFF] w-[1147px] h-[94px] transition-all duration-200 ease-in-out hover:border-yellow-500 hover:scale-[1.01]">
 
             <div className="col-span-2 md:col-span-1">
               <p className="font-semibold text-[16px]">{flight.aircraft.name}</p>
@@ -43,7 +44,7 @@ export default function Card({ flightsData, className }: { flightsData: IFlight[
               </p>
             </div>
 
-          </div>
+          </Link>
         ))}
       </div>
     </section>
