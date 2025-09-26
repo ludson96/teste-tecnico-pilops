@@ -5,3 +5,7 @@ coverage/
 
 # Ignorar arquivos de configuração CommonJS
 *.cjs
+jest.config.cjs
+
+# Ignorar arquivos de configuração TypeScript
+tsconfig.json
