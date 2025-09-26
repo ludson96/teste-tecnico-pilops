@@ -25,7 +25,7 @@ export async function getFlights(page = 1, limit = 5) {
 
 export async function getFlightDetails(id: string): Promise<IFlight> {
   // A URL completa para o endpoint do seu backend
-  const API_URL = `http://localhost:3001/flights/${id}`;
+  const API_URL = `${API_BASE_URL}/flights/${id}`;
 
   try {
     const res = await fetch(API_URL, {
