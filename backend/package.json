@@ -2,12 +2,14 @@
   "name": "teste-tecnico-pilops",
   "version": "1.0.0",
   "description": "Projeto para teste tecnico para a Pilops",
-  "main": "index.js",
+  "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "start": "node dist/server.js",
+    "build": "tsc",
     "dev": "nodemon --exec tsx src/server.ts",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js -i --verbose",
+    "start": "node dist/server.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest",
+    "postinstall": "npm run build",
     "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "lint": "eslint src/**/*.{ts,js} --ext .ts,.js",
     "lint:fix": "eslint src/**/*.{ts,js} --ext .ts,.js --fix"
