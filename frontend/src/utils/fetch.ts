@@ -1,13 +1,5 @@
 import { IFlight } from "@/interfaces/IFlight";
 
-interface ApiResponse {
-  currentPage: number;
-  totalPages: number;
-  itemsPerPage: number;
-  totalItems: number;
-  data: IFlight[];
-}
-
 // Função para buscar os dados da API do seu backend
 const API_BASE_URL = 'http://localhost:3001';
 

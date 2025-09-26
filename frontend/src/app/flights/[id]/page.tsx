@@ -16,7 +16,7 @@ export default async function FlightDetailsPage({ params }: { params: { id: stri
 
       <div className="w-full max-w-[1147px] mt-15">
         <div className="mb-12 flex items-center gap-4">
-          <Link href="/">
+          <Link href="/flights">
             <Image src="/arrow.svg" alt="Voltar para a lista de voos" width={32} height={32} />
           </Link>
           <span className="text-[#FFFFFF] font-bold text-[24px] font-sora"> Detalhes do voo </span>
