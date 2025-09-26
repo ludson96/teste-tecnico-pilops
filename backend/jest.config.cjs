@@ -17,5 +17,8 @@ module.exports = {
   testMatch: [
     // Aponta diretamente para a pasta de testes na raiz do projeto.
     '<rootDir>/tests/**/*.test.ts'
-  ]
+  ],
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
 };

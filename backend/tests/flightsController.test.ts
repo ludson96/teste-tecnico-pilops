@@ -10,7 +10,7 @@ jest.unstable_mockModule("../src/services/flightsService", () => ({
 }));
 
 const flightService = await import("../src/services/flightsService.js");
-const { listFlights, getFlightDetails, totalBalance } = await import("../src/controllers/flightsController");
+const { listFlights, getFlightDetails, totalBalance } = await import("../src/controllers/flightsController.js");
 
 describe('flightsController', () => {
   beforeEach(() => {
