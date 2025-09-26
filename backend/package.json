@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/server.ts",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest",
     "postinstall": "tsc",
+    "build": "tsc",
     "lint": "eslint src/**/*.{ts,js} --ext .ts,.js",
     "lint:fix": "eslint src/**/*.{ts,js} --ext .ts,.js --fix"
   },
