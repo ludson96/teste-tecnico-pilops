@@ -1,7 +1,7 @@
 import { IFlight } from "@/interfaces/IFlight";
 
 // Função para buscar os dados da API do seu backend
-const API_BASE_URL = 'http://localhost:3001';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export async function getFlights(page = 1, limit = 5) {
   const API_URL = `${API_BASE_URL}/flights?page=${page}&limit=${limit}`;

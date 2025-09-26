@@ -2,7 +2,7 @@
   "name": "pilops-backend",
   "version": "1.0.0",
   "description": "Projeto para teste tecnico para a Pilops",
-  "main": "dist/server.js",
+  "main": "dist/src/server.js",
   "type": "module",
   "scripts": {
     "dev": "tsx src/server.ts",
