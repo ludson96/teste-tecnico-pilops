@@ -1,5 +1,5 @@
 {
-  "name": "teste-tecnico-pilops",
+  "name": "pilops-backend",
   "version": "1.0.0",
   "description": "Projeto para teste tecnico para a Pilops",
   "main": "dist/server.js",
