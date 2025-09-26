@@ -2,7 +2,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import { getFlightDetails } from "@/utils/fetch";
 import { formatDate } from "@/utils/formatDate";
-import { formatBalance } from "@/utils/formatBalance";
+import { formatCurrency } from "@/utils/formatBalance";
 import Image from "next/image";
 
 
@@ -15,15 +15,16 @@ export default async function FlightDetailsPage({ params }: { params: { id: stri
       <Header />
 
       <div className="w-full max-w-[1147px] mt-15">
-        <div className="mb-12">
-          <Link href="/" className="flex items-center gap-4">
-            <Image src="/arrow.svg" alt="Arrow" width={32} height={32} />
-            <span className="text-[#FFFFFF] font-bold text-[24px] font-sora"> Detalhes do voo </span>
+        <div className="mb-12 flex items-center gap-4">
+          <Link href="/">
+            <Image src="/arrow.svg" alt="Voltar para a lista de voos" width={32} height={32} />
           </Link>
+          <span className="text-[#FFFFFF] font-bold text-[24px] font-sora"> Detalhes do voo </span>
         </div>
 
         {/* Recompensas */}
         <section className="bg-[#212121] rounded-[5px] border-[1px] border-[#444444] pt-4 px-6 pb-8 flex flex-col gap-6">
+
           {/* Título da Seção */}
           <div className="flex items-center gap-2">
             <Image src="/trophy.svg" alt="Troféu" width={24} height={24} />
@@ -38,8 +39,8 @@ export default async function FlightDetailsPage({ params }: { params: { id: stri
               <Image src="/coin.svg" alt="Moeda" width={48} height={48} />
               <div>
                 <p className="text-gray-400 text-sm uppercase">Ganhos totais</p>
-                <p className={`text-3xl font-bold ${flightData.balance >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                  {formatBalance(flightData.balance)}
+                <p className={`text-3xl font-bold ${flightData.balance >= 0 ? 'text-[#00FF88]' : 'text-[#FF0000]'}`}>
+                  {formatCurrency(flightData.balance)}
                 </p>
               </div>
             </div>
@@ -64,25 +65,33 @@ export default async function FlightDetailsPage({ params }: { params: { id: stri
         </section>
 
         {/* Detalhes do voo */}
-        <section className="mt-6 bg-zinc-900 rounded-lg p-6 flex flex-col gap-4">
-          <div>
-            <p className="font-semibold">{aircraft.name}</p>
-            <p className="text-gray-400 text-sm">Gol Linhas Aéreas (GOL)</p>
+        <section className="bg-[#212121] rounded-[5px] border-[1px] border-[#444444] pt-[16px] pr-[24px] pb-[24px] pl-[24px] grid grid-cols-2 md:grid-cols-4 items-center gap-[24px] font-manrope text-[#FFFFFF] w-[1147px] h-[94px] mt-[31px]">
+
+          <div className="col-span-2 md:col-span-1">
+            <p className="font-semibold text-[16px]">{aircraft.name}</p>
+            <p className="text-[#E0E0E0] text-[14px] font-normal">Gol Linhas Aéreas (GOL)</p>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-            <div>
-              <p className="text-gray-400 text-sm">Trajeto</p>
-              <p className="font-semibold">{flightData.route.from} → {flightData.route.to}</p>
+          <div className="hidden md:flex flex-col items-center">
+            <p className="text-xs text-[#E0E0E0] mb-1">Trajeto</p>
+            <div className="flex items-center">
+              <span className="text-[14px] text-[#FFFFFF]">{flightData.route.from}</span>
+              <div className="w-12 h-0.5 bg-yellow-500 mx-2 rounded-full relative">
+                <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full absolute -left-1 -top-1"></div>
+                <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full absolute -right-1 -top-1"></div>
+              </div>
+              <span className="text-[14px] text-[#FFFFFF]">{flightData.route.to}</span>
             </div>
-            <div>
-              <p className="text-gray-400 text-sm">Matrícula</p>
-              <p className="font-semibold">{aircraft.registration}</p>
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">Data</p>
-              <p className="font-semibold">{formatDate(flightData.date)}</p>
-            </div>
+          </div>
+
+          <div className="text-left md:text-center">
+            <p className="text-xs text-[#E0E0E0] mb-1">Matrícula</p>
+            <p className="text-[16px] font-semibold text-[#FFFFFF]">{aircraft.registration}</p>
+          </div>
+
+          <div className="text-left md:text-center">
+            <p className="text-xs text-[#E0E0E0] mb-1">Data</p>
+            <p className="text-[16px] text-[#FFFFFF] font-semibold">{formatDate(flightData.date)}</p>
           </div>
         </section>
       </div>
