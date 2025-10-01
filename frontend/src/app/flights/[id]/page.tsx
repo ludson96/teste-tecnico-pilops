@@ -8,7 +8,6 @@ import Image from "next/image";
 
 export default async function FlightDetailsPage({ params }: { params: { id: string } }) {
 
-  // @ts-ignore
   const { id } = await params
   const { aircraft, flightData } = await getFlightDetails(id);
 
