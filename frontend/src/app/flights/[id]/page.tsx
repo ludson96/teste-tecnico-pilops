@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Header from "@/components/Header";
-import { getFlightDetails } from "@/utils/fetch";
+import { getFlightDetails } from "@/api/flights";
 import { formatDate } from "@/utils/formatDate";
 import { formatCurrency } from "@/utils/formatBalance";
 import Image from "next/image";
@@ -8,7 +8,9 @@ import Image from "next/image";
 
 export default async function FlightDetailsPage({ params }: { params: { id: string } }) {
 
-  const { aircraft, flightData } = await getFlightDetails(params.id);
+  // @ts-ignore
+  const { id } = await params
+  const { aircraft, flightData } = await getFlightDetails(id);
 
   return (
     <main className="bg-[#1A1A1A] min-h-screen p-8 md:p-[63px] flex flex-col items-center text-white">

@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Card from "@/components/Card";
 import Header from "@/components/Header";
-import { getFlights } from "@/utils/fetch";
-import { IFlight } from '@/interfaces/IFlight';
+import { getFlights } from "@/api/flights";
+import { Flight } from '@/interfaces/flights';
 
 export default function Home() {
-  const [flights, setFlights] = useState<IFlight[]>([]);
+  const [flights, setFlights] = useState<Flight[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,10 +27,17 @@ export default function Home() {
   useEffect(() => {
     const fetchInitialFlights = async () => {
       setIsLoading(true);
-      const initialFlights = await getFlights(1);
-      setFlights(initialFlights.data);
-      setHasMore(initialFlights.data.length > 0);
-      setIsLoading(false);
+      try {
+        const initialFlights = await getFlights(1);
+        console.log("API Response:", initialFlights);
+        const flightsData = initialFlights?.data || [];
+        setFlights(flightsData);
+        setHasMore(flightsData.length > 0);
+      } catch (error) {
+        console.error("Failed to fetch flights:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchInitialFlights();
   }, []);
@@ -57,7 +64,9 @@ export default function Home() {
           <p className="font-normal text-[18px] leading-[110%] text-[#E0E0E0] font-sora">Visualize seu histórico completo de voos realizados</p>
         </div>
 
-        <Card flightsData={flights} lastFlightRef={lastFlightElementRef} />
+        <Card flights={flights} lastFlightRef={lastFlightElementRef} />
+
+
 
         {isLoading && <p className="text-center text-yellow-500 mt-8">Carregando mais voos...</p>}
         {!hasMore && flights.length > 0 && <p className="text-center text-gray-400 mt-8">Você chegou ao fim.</p>}

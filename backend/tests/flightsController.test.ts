@@ -1,7 +1,7 @@
 import { jest } from "@jest/globals";
 import { Request, Response } from "express";
 
-// https://www.devmedia.com.br/teste-unitario-com-jest/41234
+// Duvidas sobre mock com jest https://www.devmedia.com.br/teste-unitario-com-jest/41234
 
 jest.unstable_mockModule("../src/services/flightsService", () => ({
   getAllFlights: jest.fn(),

@@ -3,14 +3,14 @@ import * as flightService from '../services/flightsService.js';
 
 export const listFlights = (req: Request, res: Response) => {
   // Código adapatado de https://blog.devgenius.io/pagination-in-node-js-512fbb809103
-  // 1. Leitura dos query parameters da URL
+  // Leitura dos query parameters da URL
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
 
-  // 2. Chama o serviço, agora passando os parâmetros de paginação
+  // Chama o serviço, agora passando os parâmetros de paginação
   const result = flightService.getAllFlights(page, limit);
 
-  // 3. Monta a resposta final com metadados de paginação
+  // Monta a resposta final com metadados de paginação
   const totalPages = Math.ceil(result.totalItems / limit);
 
   const response = {
