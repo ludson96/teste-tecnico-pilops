@@ -29,7 +29,6 @@ export default function Home() {
       setIsLoading(true);
       try {
         const initialFlights = await getFlights(1);
-        console.log("API Response:", initialFlights);
         const flightsData = initialFlights?.data || [];
         setFlights(flightsData);
         setHasMore(flightsData.length > 0);
@@ -64,12 +63,24 @@ export default function Home() {
           <p className="font-normal text-[18px] leading-[110%] text-[#E0E0E0] font-sora">Visualize seu histórico completo de voos realizados</p>
         </div>
 
-        <Card flights={flights} lastFlightRef={lastFlightElementRef} />
-
-
+        <section>
+          <div className="space-y-[21px]">
+            {Array.isArray(flights) && flights.map((flight, index) => {
+              const isLastElement = flights.length === index + 1;
+              return (
+                <Card
+                  key={flight.id}
+                  flight={flight}
+                  ref={isLastElement ? lastFlightElementRef : null} />
+              );
+            })}
+          </div>
+        </section>
 
         {isLoading && <p className="text-center text-yellow-500 mt-8">Carregando mais voos...</p>}
+
         {!hasMore && flights.length > 0 && <p className="text-center text-gray-400 mt-8">Você chegou ao fim.</p>}
+
       </div>
 
     </main>

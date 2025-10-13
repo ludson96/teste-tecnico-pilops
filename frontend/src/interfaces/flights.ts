@@ -25,7 +25,6 @@ export interface FlightsResponse {
 }
 
 export interface CardProps {
-  flights: Flight[];
+  flight: Flight;
   className?: string;
-  lastFlightRef: (node: HTMLAnchorElement) => void;
 }
