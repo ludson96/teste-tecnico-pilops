@@ -1,9 +1,9 @@
-import Link from "next/link";
 import Header from "@/components/Header";
 import { getFlightDetails } from "@/api/flights";
 import { formatDate } from "@/utils/formatDate";
 import { formatCurrency } from "@/utils/formatBalance";
 import Image from "next/image";
+import BackButton from "@/components/BackButton";
 
 
 export default async function FlightDetailsPage({ params }: { params: { id: string } }) {
@@ -17,9 +17,7 @@ export default async function FlightDetailsPage({ params }: { params: { id: stri
 
       <div className="w-full max-w-[1147px] mt-15">
         <div className="mb-12 flex items-center gap-4">
-          <Link href="/flights">
-            <Image src="/arrow.svg" alt="Voltar para a lista de voos" width={32} height={32} />
-          </Link>
+          <BackButton />
           <span className="text-[#FFFFFF] font-bold text-[24px] font-sora"> Detalhes do voo </span>
         </div>
 
@@ -72,6 +70,20 @@ export default async function FlightDetailsPage({ params }: { params: { id: stri
             <p className="font-semibold text-[16px]">{aircraft.name}</p>
             <p className="text-[#E0E0E0] text-[14px] font-normal">Gol Linhas Aéreas (GOL)</p>
           </div>
+
+          {/* <div className="hidden md:flex flex-col items-center">
+            <p className="text-xs text-[#E0E0E0] mb-1">Trajeto</p>
+            <div className="flex flex-col items-center w-20">
+              <div className="w-12 h-0.5 bg-yellow-500 rounded-full relative mb-2">
+                <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full absolute -left-1 -top-1"></div>
+                <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full absolute -right-1 -top-1"></div>
+              </div>
+              <div className="flex justify-between w-full text-[14px] text-[#FFFFFF]">
+                <span>{flightData.route.from}</span>
+                <span>{flightData.route.to}</span>
+              </div>
+            </div>
+          </div> */}
 
           <div className="hidden md:flex flex-col items-center">
             <p className="text-xs text-[#E0E0E0] mb-1">Trajeto</p>
