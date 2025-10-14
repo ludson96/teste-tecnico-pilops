@@ -3,8 +3,10 @@ export async function apiFetch<T>(endpoint: string, options?: RequestInit): Prom
 
   try {
     const res = await fetch(`${API_BASE_URL}${endpoint}`, {
-      cache: 'no-store',
       ...options,
+      next: {
+        revalidate: 3600, // Revalida o cache a cada 1 hora (3600 segundos)
+      },
     });
 
     if (!res.ok) {
@@ -12,8 +14,12 @@ export async function apiFetch<T>(endpoint: string, options?: RequestInit): Prom
       throw new Error(errorBody.message || 'Falha ao buscar dados do backend');
     }
 
-    const text = await res.text();
-    return text ? JSON.parse(text) : ({} as T);
+    // Planejamento furuto: caso retorne "204 No Content", não há corpo para analisar.
+    if (res.status === 204) {
+      return {} as T;
+    }
+
+    return res.json() as Promise<T>;
 
   } catch (error) {
     console.error("API Fetch Error:", error);

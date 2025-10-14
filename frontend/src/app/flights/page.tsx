@@ -11,6 +11,7 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  // Alteração do seu valor não causa uma nova renderização do componente.
   const observer = useRef<IntersectionObserver | null>(null);
 
   const loadMoreFlights = useCallback(async () => {

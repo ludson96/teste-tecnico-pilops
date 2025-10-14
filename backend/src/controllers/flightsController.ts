@@ -10,7 +10,7 @@ export const listFlights = (req: Request, res: Response) => {
   // Chama o serviço, agora passando os parâmetros de paginação
   const result = flightService.getAllFlights(page, limit);
 
-  // Monta a resposta final com metadados de paginação
+  // (100 / 10) = 10 paginas, usando o Math.ceil para arredondar para cima 10.1 fica 11 paginas
   const totalPages = Math.ceil(result.totalItems / limit);
 
   const response = {
