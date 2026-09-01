@@ -1,6 +1,13 @@
 # ✈️ Pilops - Flight History
 
+🌍 Read this in [English](README.en.md)
+
 > Aplicação full stack desenvolvida como parte do desafio técnico para a vaga de **Engenheiro(a) de Software Fullstack (Estágio/Júnior)** na **Pilops**. O sistema permite aos pilotos virtuais gerenciar, visualizar e acompanhar todo o histórico de voos, rotas, matrículas e saldos financeiros de suas missões no simulador.
+
+## 🌐 Deploy / Demonstração Online
+
+Acesse a aplicação em produção:
+👉 **[teste-tecnico-pilops.vercel.app](https://teste-tecnico-pilops-bgd4.vercel.app/flights)**
 
 ## 📝 Sobre o Projeto
 
