@@ -1,4 +1,4 @@
-import { CardProps, Flight } from "@/interfaces/flights";
+import { CardProps } from "@/interfaces/flights";
 import { formatDate } from "@/utils/formatDate";
 import { formatBalance } from "@/utils/formatBalance";
 import Link from "next/link";

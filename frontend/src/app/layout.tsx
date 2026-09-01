@@ -17,6 +17,9 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Pilops - Flight History",
   description: "Your virtual pilot career for Flight Simulator",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

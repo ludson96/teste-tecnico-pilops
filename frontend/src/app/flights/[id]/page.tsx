@@ -6,9 +6,8 @@ import Image from "next/image";
 import BackButton from "@/components/BackButton";
 
 
-export default async function FlightDetailsPage({ params }: { params: { id: string } }) {
-
-  const { id } = await params
+export default async function FlightDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const { aircraft, flightData } = await getFlightDetails(id);
 
   return (
