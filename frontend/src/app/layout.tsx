@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora, Manrope } from "next/font/google";
 import "./globals.css";
+import { ServerNoticeBanner } from "@/components/Banner";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -32,6 +33,9 @@ export default function RootLayout({
       <body
         className={`${sora.variable} ${manrope.variable} antialiased`}
       >
+        <div className="fixed top-16 left-0 w-full z-30">
+          <ServerNoticeBanner />
+        </div>
         {children}
       </body>
     </html>
