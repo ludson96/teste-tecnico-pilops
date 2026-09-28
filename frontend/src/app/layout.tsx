@@ -19,7 +19,13 @@ export const metadata: Metadata = {
   title: "Pilops - Flight History",
   description: "Your virtual pilot career for Flight Simulator",
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      {
+        url: "/favicon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+    shortcut: "/favicon.svg",
   },
 };
 
