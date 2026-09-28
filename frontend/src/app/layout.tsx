@@ -33,7 +33,7 @@ export default function RootLayout({
       <body
         className={`${sora.variable} ${manrope.variable} antialiased`}
       >
-        <div className="fixed top-16 left-0 w-full z-30">
+        <div className="fixed top-0 left-0 w-full z-30">
           <ServerNoticeBanner />
         </div>
         {children}
