@@ -1,61 +1,63 @@
 # ✈️ Pilops - Flight History
 
-🇧🇷 Leia isto em [Português](README.md)
+[![Next.js 15](https://img.shields.io/badge/Next.js-15.5-black.svg?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React-19.1-20232a.svg?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript 5](https://img.shields.io/badge/TypeScript-5.x-3178C6.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-6DA55F.svg?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express 5](https://img.shields.io/badge/Express-5.1-000000.svg?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4.x-38B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Jest](https://img.shields.io/badge/Jest-29.7-C21325.svg?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-> Full-stack application developed as part of the technical challenge for the **Fullstack Software Engineer (Intern/Junior)** role at **Pilops**. The platform allows virtual pilots to manage, view, and track their entire flight history, routes, aircraft registrations, and financial balances from simulator missions.
+> 🇺🇸 **English** | 🇧🇷 [**Versão em Português**](README.md)
 
-## 🌐 Deploy / Live Demo
+Full Stack application developed as a technical challenge solution for **Pilops**, simulating a flight history and management dashboard for flight simulator virtual pilots.
 
-Access the production application:
-👉 **[teste-tecnico-pilops.vercel.app](https://teste-tecnico-pilops-bgd4.vercel.app/flights)**
+## 📌 Quick Navigation
+
+- [📝 About the Project](#-about-the-project)
+- [🖼️ Preview](#️-preview)
+- [🌐 Application Deploy](#-application-deploy)
+- [⚡ API Endpoints](#-api-endpoints)
+- [✨ Key Features](#-key-features)
+- [🛠️ Technologies & Tools Used](#️-technologies--tools-used)
+- [🏛️ Solution Architecture](#️-solution-architecture)
+- [📁 Repository Structure](#-repository-structure)
+- [💡 Technical Decisions](#-technical-decisions)
+- [🚀 How to Run the Project](#-how-to-run-the-project)
+- [📄 License](#-license)
 
 ## 📝 About the Project
 
-**Pilops Flight History** is an end-to-end solution for flight operations tracking and analysis. The application consumes structured flight data, providing a scalable REST API with intelligent server-side pagination on the backend, alongside a modern, responsive, and high-performance web interface built with Next.js and Tailwind CSS.
+**Pilops - Flight History** was created to deliver a smooth, responsive, and modern experience for tracking virtual flight mission logs. The system features a modular backend built with Express + TypeScript offering pagination and financial analytics, alongside a high-fidelity frontend built with Next.js 15 (App Router) and Tailwind CSS, featuring an infinite scrolling feed powered by `IntersectionObserver`.
 
 ## 🖼️ Preview
 
 <img src="./frontend/public/projeto.gif" alt="App Demonstration" />
 
-## ✨ Features
+## 🌐 Application Deploy
 
-### 💻 Frontend
-- **Infinite Scrolling Feed**: Continuous on-demand batch loading powered by `IntersectionObserver`, ensuring fluid navigation without UI lag.
-- **Flight Details View**: Dedicated detail page (`/flights/[id]`) displaying:
-  - Route summary (origin & destination).
-  - Aircraft model and registration code.
-  - Mission rewards (total earnings, gained XP, mission bonus).
-  - Breakdown of operating costs (fuel, airport fees, and maintenance).
-- **Themed & Responsive Design System**:
-  - Native dark mode with a harmonious dark palette and golden/yellow accents.
-  - Clean typography configured with **Sora** (headings) and **Manrope** (body & data).
-  - Clean vector SVG favicon matching the official brand emblem.
-  - Fully responsive across mobile smartphones, tablets, and wide desktop displays.
+Access the live production app:
+👉 **[Pilops Flight History](https://teste-tecnico-pilops-bgd4.vercel.app/flights)**
 
-### ⚙️ Backend (REST API)
-- **Paginated Flight Listing**: Dynamic pagination with automatic total page calculation and record count.
-- **Flight Details by ID**: Optimized single-record lookup via unique identifier (`id`).
-- **Consolidated Total Balance**: Analytical endpoint that calculates cumulative balance across all flight operations with precise currency rounding.
-- **CORS & Native ES Modules**: Configured for seamless and secure integration with the client application.
+## ⚡ API Endpoints
 
-## 🌐 API Endpoints
+The backend provides a fast, structured RESTful API (default port `3001` in local development):
 
-The API runs by default on `http://localhost:3001` and exposes the following routes:
-
-| Method | Endpoint | Description | Query / Params Example |
+| Method | Endpoint | Description | Parameters / Example |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/flights` | Lists flights with pagination | `?page=1&limit=10` |
-| `GET` | `/flights/:id` | Returns complete details for a specific flight | `/flights/FL-001` |
-| `GET` | `/flights/total-balance` | Returns the cumulative balance of all flights | — |
+| `GET` | `/flights` | Returns a paginated list of flights | `?page=1&limit=10` |
+| `GET` | `/flights/:id` | Returns complete details of a specific flight | `/flights/FL-001` |
+| `GET` | `/flights/total-balance` | Returns the accumulated financial balance | — |
 
 <details>
-<summary>Example response from <code>GET /flights?page=1&limit=2</code></summary>
+<summary>Example Response Payload (<code>GET /flights?page=1&limit=1</code>)</summary>
 
 ```json
 {
   "currentPage": 1,
-  "totalPages": 10,
-  "itemsPerPage": 2,
+  "totalPages": 20,
+  "itemsPerPage": 1,
   "totalItems": 20,
   "data": [
     {
@@ -81,71 +83,123 @@ The API runs by default on `http://localhost:3001` and exposes the following rou
 ```
 </details>
 
-## 🛠️ Technologies Used
+## ✨ Key Features
 
-| Category | Technology |
-| :--- | :--- |
-| **Frontend** | [![Next.js][Next.js-logo]][Next.js-url] [![React][React-logo]][React-url] [![TypeScript][TypeScript-logo]][TypeScript-url] [![Tailwind-CSS][Tailwind-CSS-logo]][Tailwind-CSS-url] |
-| **Backend** | [![NodeJS][NodeJS-logo]][NodeJS-url] [![Express][Express-logo]][Express-url] [![TypeScript][TypeScript-logo]][TypeScript-url] |
-| **Quality & Dev** | [![Jest][Jest-logo]][Jest-url] [![ESLint][ESLint-logo]][ESLint-url] [![Git][Git-logo]][Git-url] |
+### 💻 Frontend (Web Client)
+- **Smart Infinite Scrolling**: Seamless feed monitoring the visibility of the last rendered element via `IntersectionObserver`, preventing pagination interruptions and duplicate network calls.
+- **Flight Details Page (`/flights/[id]`)**: Comprehensive overview including route (origin and destination ICAO), aircraft registration, date, monetary earnings, XP earned, and mission bonus percentages.
+- **Themed UI & Design System**:
+  - Immersive Dark Mode with deep dark backgrounds and gold/yellow accents.
+  - Custom typography with Google Fonts (**Sora** and **Manrope**).
+  - Modular component library with vector SVG icons and dedicated loading/end-of-feed indicators.
+  - Fully responsive across mobile, tablet, and desktop viewports.
+
+### ⚙️ Backend (RESTful Engine)
+- **Dynamic Pagination**: Precise `page` and `limit` handling, automatically computing page counts and total dataset items.
+- **Targeted ID Lookup**: Optimized endpoint for instant individual record retrieval.
+- **Consolidated Balance Aggregation**: Accurate monetary accumulation using array reduction.
+- **Modular ES Modules Architecture**: Modern architecture using native `import`/`export`, strict TypeScript typing, CORS headers, and JSON body parsing.
+
+## 🛠️ Technologies & Tools Used
+
+| Layer / Purpose | Technology | Description |
+| :--- | :--- | :--- |
+| **Frontend Web Framework** | **Next.js 15 (App Router)** | React framework with Server Components support, font optimization, and hybrid rendering |
+| **UI Library** | **React 19** | Core library for declarative and reactive user interfaces |
+| **Primary Language** | **TypeScript 5** | Strict static typing across 100% of the project (frontend and backend) |
+| **Styling** | **Tailwind CSS 4** | Modern utility-first CSS framework for rapid and responsive UI building |
+| **Backend & Runtime** | **Node.js (18+) & Express 5** | Lightweight, high-performance HTTP server following Controller-Service architecture |
+| **TypeScript Execution** | **tsx** | Ultra-fast execution and live hot-reloading for backend development without build steps |
+| **Icons & Assets** | **Lucide React & SVGs** | Clean icon sets and vector graphics |
+| **Automated Testing** | **Jest & ts-jest** | Unit testing suite covering backend services and core calculations |
+| **Code Quality** | **ESLint** | Static analysis ensuring code consistency and best practices |
+| **Deployment & Hosting** | **Vercel** | Hosting platform with automated CI/CD pipelines |
+
+## 🏛️ Solution Architecture
+
+```mermaid
+flowchart TD
+    subgraph Client ["🖥️ Presentation Layer (Frontend)"]
+        UI["User Interface (Next.js 15)"]
+        Scroll["Infinite Scroll (IntersectionObserver)"]
+        APIClient["API Client (Fetch / Native Async)"]
+        UI --> Scroll
+        Scroll --> APIClient
+    end
+
+    subgraph Backend ["⚙️ Service Layer (Backend Express)"]
+        Router["Router (/flights)"]
+        Controller["FlightsController"]
+        Service["FlightsService"]
+        MockData[("flightHistory.json (Dataset)")]
+
+        Router --> Controller
+        Controller --> Service
+        Service --> MockData
+    end
+
+    APIClient -->|"HTTP Request (GET /flights, /:id, /total-balance)"| Router
+    Service -->|"Returns Formatted / Paginated Data"| Controller
+    Controller -->|"JSON Response"| APIClient
+```
 
 ## 📁 Repository Structure
 
 ```text
 teste-tecnico-pilops/
-├── backend/                    # REST API in Node.js + Express + TypeScript
+├── backend/                    # Node.js + Express + TypeScript REST API
 │   ├── src/
-│   │   ├── controllers/        # Request & Response HTTP handlers
-│   │   ├── data/               # Mock dataset (flightHistory.json)
-│   │   ├── routes/             # Route definitions (/flights)
-│   │   ├── services/           # Business logic & pagination algorithms
-│   │   ├── app.ts              # Express configuration & middlewares
-│   │   └── server.ts           # Server bootstrap on port 3001
-│   ├── tests/                  # Unit test suite with Jest
-│   ├── tsconfig.json           # Backend TypeScript configuration
+│   │   ├── controllers/        # HTTP Controllers (request validation & response formatting)
+│   │   ├── data/               # Structured flight data (flightHistory.json)
+│   │   ├── routes/             # Route mapping and definitions (/flights)
+│   │   ├── services/           # Business logic, pagination, and data aggregations
+│   │   ├── app.ts              # Express configuration, CORS, and middlewares
+│   │   └── server.ts           # HTTP server bootstrapping
+│   ├── tests/                  # Automated unit tests with Jest
+│   ├── tsconfig.json           # TypeScript configuration for backend
 │   └── package.json
 │
-├── frontend/                   # Web application in Next.js 15
-│   ├── public/                 # Favicons, logos, and vector SVG assets
+├── frontend/                   # Next.js 15 + Tailwind CSS Web Application
+│   ├── public/                 # Static assets, SVG icons, and demo GIF
 │   ├── src/
-│   │   ├── api/                # HTTP client services (fetch) for the backend API
-│   │   ├── app/                # Next.js App Router structure
-│   │   │   ├── flights/        # Main flight feed and dynamic [id] route
-│   │   │   ├── layout.tsx      # Root layout with fonts & metadata
-│   │   │   └── globals.css     # Global stylesheets & Tailwind CSS integration
-│   │   ├── components/         # Reusable UI components (Card, Header, BackButton)
-│   │   ├── interfaces/         # TypeScript contracts and definitions
-│   │   └── utils/              # Helper functions (currency and date formatters)
-│   ├── tsconfig.json           # Frontend TypeScript configuration
+│   │   ├── api/                # API communication clients
+│   │   ├── app/                # App Router page directory
+│   │   │   ├── flights/        # Flight feed and dynamic [id] view
+│   │   │   ├── layout.tsx      # Base layout with font injection and notice banner
+│   │   │   └── globals.css     # Global styles and Tailwind configuration
+│   │   ├── components/         # Reusable UI components (Card, Header, BackButton, Banner)
+│   │   ├── interfaces/         # TypeScript interfaces and type contracts
+│   │   └── utils/              # Utility helpers (date and currency formatters)
+│   ├── tsconfig.json           # TypeScript configuration for frontend
 │   └── package.json
 │
-├── README.md                   # Documentation (Portuguese)
-└── README.en.md                # Documentation (English)
+├── LICENSE                     # MIT License
+├── README.en.md                # English Documentation
+└── README.md                   # Portuguese Documentation
 ```
 
 ## 💡 Technical Decisions
 
-1. **Layered Architecture (Controller-Service-Data)**:
-   - **Controllers** handle HTTP requests, validate query/route parameters, and return JSON responses.
-   - **Services** encapsulate all business logic (array slicing for pagination, data lookups, and balance aggregations), ensuring code is clean, decoupled, and easy to unit test.
+1. **Layered Separation of Concerns (Controller-Service-Data)**:
+   - **Controllers** strictly manage HTTP transport responsibilities (query parameter parsing, status codes).
+   - **Services** encapsulate data filtering, pagination slicing, and business computations, providing a testable and modular design.
 
-2. **Native ES Modules on Backend (`"type": "module"`)**:
-   - The backend was authored using native ES Modules (`import`/`export`) via TypeScript and `tsx`. This aligns with modern JavaScript standards and supports native *Import Attributes* (`with { type: "json" }`).
+2. **Backend Native ES Modules with TypeScript**:
+   - Built on native ECMAScript modules (`"type": "module"`) along with TypeScript and `tsx` for high consistency with the modern frontend ecosystem.
 
-3. **Infinite Scroll with `IntersectionObserver`**:
-   - Rather than forcing traditional paginated button navigation, the client tracks the last element using an `IntersectionObserver` callback ref, triggering the next page fetch seamlessly as the user scrolls.
+3. **Infinite Scrolling with Intersection Observer API**:
+   - Implemented via a callback ref on the last rendered card element. This triggers pagination requests only when needed, maintaining optimal DOM performance.
 
-4. **Next.js 15 App Router & Server/Client Components**:
-   - Leveraged React 19 / Next.js 15 component paradigm, separating client interactivity (`"use client"` for dynamic infinite scrolling) while maintaining server-rendered performance for flight details.
-
-5. **Font Optimization with `next/font`**:
-   - Utilized `next/font/google` to inject CSS custom properties (`--font-sora`, `--font-manrope`), eliminating render-blocking downloads and layout shifts.
+4. **Next.js 15 App Router & Font Optimization**:
+   - Optimal combination of Server and Client Components (`"use client"`).
+   - Zero-layout-shift font delivery using `next/font/google` for **Sora** and **Manrope**.
 
 ## 🚀 How to Run the Project
 
 ### Prerequisites
-- **Node.js** installed (version 18.x or higher recommended).
-- **npm** or **yarn**.
+- **Node.js** (version 18 or higher)
+- **npm** or **yarn**
+- **Git**
 
 ### 1. Clone the Repository
 ```bash
@@ -154,65 +208,47 @@ cd teste-tecnico-pilops
 ```
 
 ### 2. Run the Backend
-
-Open a terminal in the project root and run:
+Open a terminal in the root project directory:
 
 ```bash
-# 1. Navigate to backend directory
+# Navigate to the backend directory
 cd backend
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Start development server
+# Start development server
 npm run dev
 ```
 
 > 🟢 The backend will be available at: `http://localhost:3001`
 
-*(Optional) Run backend tests:*
+To run backend automated unit tests:
 ```bash
 npm test
 ```
 
 ### 3. Run the Frontend
-
-Open a **second terminal** and run:
+Open a **second terminal** in the root project directory:
 
 ```bash
-# 1. Navigate to frontend directory
+# Navigate to the frontend directory
 cd frontend
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Start development server
+# Start development server
 npm run dev
 ```
 
-> 🟢 The application will be available at: `http://localhost:3000`
+> 🟢 The web application will be accessible at: `http://localhost:3000` (or direct path `http://localhost:3000/flights`)
 
-## 👨‍💻 Author
+## 📄 License
 
-Developed by **Ludson Pereira**  
-- [GitHub](https://github.com/ludson96)
-- [LinkedIn](https://www.linkedin.com/in/ludson-pereira/)
+This project is licensed under the [MIT License](LICENSE).
 
-[Next.js-logo]: https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white
-[Next.js-url]: https://nextjs.org/
-[React-logo]: https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB
-[React-url]: https://reactjs.org
-[TypeScript-logo]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
-[TypeScript-url]: https://www.typescriptlang.org/
-[Tailwind-CSS-logo]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
-[Tailwind-CSS-url]: https://tailwindcss.com/
-[NodeJS-logo]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
-[NodeJS-url]: https://nodejs.org/en/
-[Express-logo]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
-[Express-url]: https://expressjs.com
-[Jest-logo]: https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white
-[Jest-url]: https://jestjs.io
-[ESLint-logo]: https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white
-[ESLint-url]: https://eslint.org/
-[Git-logo]: https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white
-[Git-url]: https://git-scm.com
+<div align="center">
+  Developed by <strong>Ludson Pereira dos Santos</strong> 🚀<br />
+  <a href="https://www.linkedin.com/in/ludson96/">LinkedIn</a> • <a href="https://github.com/ludson96">GitHub</a> • <a href="mailto:ludson_ps27@hotmail.com">E-mail</a>
+</div>
