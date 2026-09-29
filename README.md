@@ -7,7 +7,6 @@
 [![Express 5](https://img.shields.io/badge/Express-5.1-000000.svg?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4.x-38B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Jest](https://img.shields.io/badge/Jest-29.7-C21325.svg?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 > 🇧🇷 **Português** | 🇺🇸 [**English Version**](README.en.md)
 
@@ -25,7 +24,6 @@ Aplicação Full Stack desenvolvida como solução para o desafio técnico da **
 - [📁 Estrutura do Repositório](#-estrutura-do-repositório)
 - [💡 Decisões Técnicas](#-decisões-técnicas)
 - [🚀 Como Executar o Projeto](#-como-executar-o-projeto)
-- [📄 Licença](#-licença)
 
 ## 📝 Sobre o Projeto
 
@@ -173,7 +171,6 @@ teste-tecnico-pilops/
 │   ├── tsconfig.json           # Configurações TypeScript do frontend
 │   └── package.json
 │
-├── LICENSE                     # Licença MIT
 ├── README.en.md                # English Documentation
 └── README.md                   # Documentação em Português
 ```
@@ -243,10 +240,6 @@ npm run dev
 ```
 
 > 🟢 A interface web estará disponível em: `http://localhost:3000` (ou rota direta `http://localhost:3000/flights`)
-
-## 📄 Licença
-
-Este projeto está sob a licença [MIT](LICENSE).
 
 <div align="center">
   Desenvolvido por <strong>Ludson Pereira dos Santos</strong> 🚀<br />
